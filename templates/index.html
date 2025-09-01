@@ -3,58 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Canvas Generator</title>
+    <title>Custom Canvas Generator | Create Custom Canvas Images Online</title>
+    <meta name="description" content="Generate custom canvas images with your own dimensions instantly. Easy, fast, and free online canvas generator for designers and developers.">
+    <meta name="keywords" content="canvas generator, custom canvas, image generator, online canvas, design tool, free canvas, canvas dimensions">
+    <meta name="author" content="Dimuthu Rathnayaka">
+    <meta property="og:title" content="Custom Canvas Generator">
+    <meta property="og:description" content="Create custom canvas images with your own dimensions. Start designing now!">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dimuthulk.dev/">
+    <meta property="og:image" content="https://dimuthulk.dev/static/canvas-preview.png">
+    <link rel="canonical" href="https://dimuthulk.dev/">
+    <!-- Favicons provided from templates/favicon_io served via /favicon/ route -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/favicon/site.webmanifest">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f4f4;
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 0;
             padding: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1.5s ease-in-out;
         }
         .container {
-            max-width: 500px;
-            margin: 60px auto;
-            background: #fff;
+            max-width: 600px;
+            width: 95vw;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             padding: 40px 32px;
-            border-radius: 12px;
-            box-shadow: 0 4px 24px rgba(44, 62, 80, 0.10);
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
         h1 {
-            color: #2d3e50;
-            font-size: 2rem;
-            margin-bottom: 16px;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            animation: slideIn 1s ease-out;
         }
         p {
-            color: #5d6d7e;
+            color: #34495e;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            animation: slideIn 1.2s ease-out;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        input[type="number"] {
+            flex: 1 1 150px;
+            min-width: 120px;
+            padding: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 12px;
             font-size: 1.1rem;
-            margin-bottom: 22px;
+            background: rgba(255, 255, 255, 0.8);
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        input[type="number"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            transform: scale(1.02);
         }
         .button {
             display: inline-block;
-            padding: 12px 28px;
-            background: #4f8cff;
+            padding: 15px 35px;
+            background: linear-gradient(45deg, #3498db, #2980b9);
             color: #fff;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            transition: all 0.3s ease;
             text-decoration: none;
-            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.08);
-            transition: background 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+            animation: pulse 2s infinite;
         }
         .button:hover {
-            background: #38c6ff;
-            box-shadow: 0 4px 16px rgba(44, 62, 80, 0.16);
+            background: linear-gradient(45deg, #2980b9, #3498db);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            transform: translateY(-2px) scale(1.05);
+        }
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #7f8c8d;
+            font-size: 1rem;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        .footer a {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        .footer a:hover {
+            color: #2980b9;
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+                max-width: 95vw;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 1.1rem;
+            }
+            form {
+                flex-direction: column;
+                gap: 10px;
+            }
+            input[type="number"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .button {
+                width: 100%;
+                padding: 15px;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            p {
+                font-size: 1rem;
+            }
+            input[type="number"] {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            .button {
+                padding: 12px;
+                font-size: 1rem;
+            }
+            .footer {
+                font-size: 0.9rem;
+            }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
+            50% { box-shadow: 0 4px 25px rgba(52, 152, 219, 0.5); }
+            100% { box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3); }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to Custom Canvas Generator</h1>
-        <p>Create custom canvas images with your own dimensions. Start by entering your desired width and height below.</p>
-        <a href="/50/50" class="button">Get Started</a>
+        <p>Create custom canvas images with your own dimensions. Enter your desired width and height below.</p>
+        <form action="" method="get" onsubmit="event.preventDefault(); window.location.href='/' + document.getElementById('width').value + '/' + document.getElementById('height').value;">
+            <input type="number" id="width" name="width" min="1" placeholder="Width (px)" required>
+            <input type="number" id="height" name="height" min="1" placeholder="Height (px)" required>
+            <button type="submit" class="button">Generate Canvas</button>
+        </form>
+        <div class="footer">
+            &copy; 2025 | Developed by 
+            <a href="https://www.linkedin.com/in/dimuthu-rathnayaka" target="_blank">Dimuthu Rathnayaka</a>
+        </div>
     </div>
-</body>
-</html>
