@@ -1,6 +1,7 @@
 from flask import Flask, send_file, render_template
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
+import os
 
 app = Flask(__name__)
 @app.route('/')
@@ -55,4 +56,4 @@ def generate_image(width, height):
     return send_file(buf, mimetype='image/png')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
