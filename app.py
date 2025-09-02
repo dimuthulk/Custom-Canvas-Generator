@@ -79,7 +79,12 @@ def generate_image(width, height):
     img.save(buf, format='PNG')
     buf.seek(0)
 
-    return send_file(buf, mimetype='image/png')
+    return send_file(
+        buf,
+        mimetype='image/png',
+        as_attachment=True,
+        download_name=f"{width}x{height}.png"
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
