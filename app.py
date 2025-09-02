@@ -1,4 +1,4 @@
-from flask import Flask, send_file, render_template
+from flask import Flask, send_file, render_template, send_from_directory
 from io import BytesIO
 from PIL import Image, ImageDraw, ImageFont
 import os
@@ -8,6 +8,30 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/favicon/<path:filename>')
+def serve_favicon(filename):
+    """Serve favicon files from the repository `favicon/` folder.
+
+    This allows using the provided `favicon/favicon-16x16.png` without moving
+    it into `static/` or `templates/`.
+    """
+
+    # The actual favicons live in templates/favicon
+    fav_dir = os.path.join(app.root_path, 'templates', 'favicon')
+    return send_from_directory(fav_dir, filename)
+
+
+@app.route('/favicon.ico')
+def favicon_ico():
+    # Serve the root /favicon.ico (browsers often request this)
+    fav_dir = os.path.join(app.root_path, 'templates', 'favicon')
+    ico_path = os.path.join(fav_dir, 'favicon.ico')
+    if os.path.exists(ico_path):
+        return send_from_directory(fav_dir, 'favicon.ico')
+    # fallback to the 16x16 png
+    return send_from_directory(fav_dir, 'favicon-16x16.png')
 
 @app.route('/<int:width>/<int:height>')
 def generate_image(width, height):
