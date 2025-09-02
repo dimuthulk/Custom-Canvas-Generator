@@ -55,5 +55,5 @@ def generate_image(width, height):
 
     return send_file(buf, mimetype='image/png')
 
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 8080)))
