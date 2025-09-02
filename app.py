@@ -79,6 +79,13 @@ def generate_image(width, height):
     img.save(buf, format='PNG')
     buf.seek(0)
 
+    # If the request has a query param ?preview=1, show the image in browser
+    if 'preview' in flask.request.args:
+        return send_file(
+            buf,
+            mimetype='image/png'
+        )
+    # Otherwise, force download
     return send_file(
         buf,
         mimetype='image/png',
