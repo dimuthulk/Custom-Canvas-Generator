@@ -1,0 +1,14 @@
+do__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+.env.*
+.venv
+*.sqlite3
+*.log
+.vscode
+.git
+.gitignore
+templates/favicon_io

@@ -4,6 +4,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 app = Flask(__name__)
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -19,21 +20,22 @@ def generate_image(width, height):
     draw = ImageDraw.Draw(img)
     text = f"{width}X{height}"
 
-    # Use a default font; for better results, ensure a font file is available (e.g., arial.ttf)
-    # You may need to adjust the path or install a font if default is too small
+    # Use a default font; try to load a system font or fallback
     try:
-        font_path = "arial.ttf"  # Replace with actual path if needed (e.g., /usr/share/fonts/truetype/msttcorefonts/arial.ttf on some systems)
-        font_size = min(width, height) // 2  # Starting font size estimate
+        # Assuming the font file is copied to the container (e.g., via Dockerfile)
+        font_path = "ARIALNB.TTF"  # Adjust path based on where you copy the font
+        font_size = (min(width, height) // 2) # Start with a smaller fraction for better scaling
 
         while font_size > 0:
             font = ImageFont.truetype(font_path, font_size)
-            # Get bounding box: left, top, right, bottom
             bbox = draw.textbbox((0, 0), text, font=font)
             text_width = bbox[2] - bbox[0]
             text_height = bbox[3] - bbox[1]
-            if text_width <= width * 0.9 and text_height <= height * 0.9:
+            if text_width <= width * 0.8 and text_height <= height * 0.8:  # Allow 80% of image size
                 break
             font_size -= 1
+        if font_size <= 0:
+            font = ImageFont.load_default()
     except IOError:
         # Fallback to default font if truetype font not found
         font = ImageFont.load_default()
