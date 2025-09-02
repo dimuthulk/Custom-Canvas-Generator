@@ -23,7 +23,7 @@ def generate_image(width, height):
     # Use a default font; try to load a system font or fallback
     try:
         # Assuming the font file is copied to the container (e.g., via Dockerfile)
-        font_path = "ARIALNB.TTF"  # Adjust path based on where you copy the font
+        font_path = "ARIAL.TTF"  # Adjust path based on where you copy the font
         font_size = (min(width, height) // 2) # Start with a smaller fraction for better scaling
 
         while font_size > 0:
