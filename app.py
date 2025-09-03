@@ -9,6 +9,9 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory('.', 'sitemap.xml')
 
 @app.route('/favicon/<path:filename>')
 def serve_favicon(filename):
